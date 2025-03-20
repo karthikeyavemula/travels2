@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelAnywhere</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff5f5;
+            color: #4b0f0f;
+            text-align: center;
+        }
+        header {
+            background-color: #800000;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #a52a2a;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        nav a:hover {
+            background-color: #8b0000;
+            border-radius: 5px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .ticket-section, .booking-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        .ticket-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .ticket-item {
+            background-color: #f8e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .ticket-item img {
+            width: 100%;
+            max-width: 200px;
+            display: block;
+            margin: auto;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #800000;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a52a2a;
+        }
+    </style>
+    <script>
+        function redirectToBooking(ticketType, price) {
+            document.getElementById('booking-section').style.display = 'block';
+            document.getElementById('ticket-section').style.display = 'none';
+            document.getElementById('ticket-type').innerText = ticketType + ' Ticket';
+            document.getElementById('ticket-price').innerText = 'Price per Ticket: ₹' + price;
+            document.getElementById('ticket-quantity').value = 1;
+            document.getElementById('total-amount').innerText = 'Total: ₹' + price;
+            document.getElementById('ticket-quantity').onchange = function() {
+                document.getElementById('total-amount').innerText = 'Total: ₹' + (price * this.value);
+            };
+        }
+        function goToHome() {
+            document.getElementById('booking-section').style.display = 'none';
+            document.getElementById('ticket-section').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>TravelAnywhere</h1>
+    </header>
+    <nav>
+        <a onclick="goToHome()">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#places">Places</a>
+        <a href="#tickets">Tickets</a>
+    </nav>
+    
+    <div class="container">
+        <section id="ticket-section" class="ticket-section">
+            <h2>Tickets</h2>
+            <div class="ticket-container">
+                <div class="ticket-item" onclick="redirectToBooking('Car', 4150)">
+                    <img src="images/تكسي مينت الجابرية 55320261 - تاكسي مينت.jpeg" alt="Car Ticket">
+                    <h3>Car Ticket: ₹4,150</h3>
+                </div>
+                <div class="ticket-item" onclick="redirectToBooking('Train', 2490)">
+                    <img src="c:\Users\shanm\Downloads\Trem Bala Moderno PNG , Trem Bala Japão, Trem De Velocidade, Trem Elétrico Da Cidade Moderna PNG Imagem para download gratuito.jpeg" alt="Train Ticket" alt="Train Ticket">
+                    <h3>Train Ticket: ₹2,490</h3>
+                </div>
+                <div class="ticket-item" onclick="redirectToBooking('Bus', 1660)">
+                    <img src="c:\Users\shanm\Downloads\3e067fcf-0ecd-4a79-999f-c9ac4a0de256.jpeg" alt="Bus Ticket">
+                    <h3>Bus Ticket: ₹1,660</h3>
+                </div>
+                <div class="ticket-item" onclick="redirectToBooking('Flight', 16600)">
+                    <img src="c:\Users\shanm\Downloads\jet airplane png object airplane travel flight png.jpeg" alt="Flight Ticket">
+                    <h3>Flight Ticket: ₹16,600</h3>
+                </div>
+            </div>
+        </section>
+        
+        <section id="booking-section" class="booking-container" style="display: none;">
+            <h2 id="ticket-type"></h2>
+            <p id="ticket-price"></p>
+            <label for="ticket-quantity">Number of Tickets:</label>
+            <input type="number" id="ticket-quantity" value="1" min="1">
+            <p id="total-amount"></p>
+            <label for="payment-method">Select Payment Method:</label>
+            <select id="payment-method">
+                <option value="credit-card">Credit Card</option>
+                <option value="debit-card">Debit Card</option>
+                <option value="upi">UPI</option>
+                <option value="net-banking">Net Banking</option>
+            </select>
+            <button onclick="alert('Payment Successful!')">Pay Now</button>
+        </section>
+    </div>
+    
+    <footer>
+        <h2>Contact Us</h2>
+        <p>Phone: <strong>9838462929</strong></p>
+    </footer>
+</body>
+</html>
